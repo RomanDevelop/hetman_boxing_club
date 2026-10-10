@@ -1,0 +1,35 @@
+{
+    "name": "A.S.B.K.S. Hetman Zamość",
+    "short_name": "Hetman",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#070708",
+    "theme_color": "#E10600",
+    "description": "Boks dla dzieci, młodzieży i dorosłych w Zamościu.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
