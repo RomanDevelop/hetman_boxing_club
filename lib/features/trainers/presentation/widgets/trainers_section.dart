@@ -31,7 +31,7 @@ class TrainersSection extends ConsumerWidget {
         const SizedBox(height: 18),
         LayoutBuilder(
           builder: (context, constraints) {
-            final columns = constraints.maxWidth >= 860 ? 3 : 1;
+            final columns = constraints.maxWidth >= 720 ? 2 : 1;
             final width = (constraints.maxWidth - 16 * (columns - 1)) / columns;
             return Wrap(
               spacing: 16,
@@ -68,7 +68,13 @@ class _TrainerCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(aspectRatio: 16 / 11, child: ClubPhoto(url: trainer.imageUrl)),
+          AspectRatio(
+            aspectRatio: 3 / 4,
+            child: ClubPhoto(
+              asset: trainer.imageUrl,
+              alignment: Alignment.topCenter,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -98,19 +104,32 @@ class _TrainerDialog extends StatelessWidget {
       backgroundColor: AppColors.surface,
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 460),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(trainer.name, style: AppTypography.display(36, style: FontStyle.normal)),
-              Text(trainer.role, style: AppTypography.body(color: AppColors.redBright)),
-              const SizedBox(height: 12),
-              Text(trainer.bio, style: AppTypography.body(color: AppColors.textPrimary)),
-              const SizedBox(height: 16),
-              HetmanButton(label: 'ZAMKNIJ', onPressed: () => Navigator.pop(context)),
-            ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                  child: AspectRatio(
+                    aspectRatio: 3 / 4,
+                    child: ClubPhoto(
+                      asset: trainer.imageUrl,
+                      alignment: Alignment.topCenter,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 14),
+                Text(trainer.name, style: AppTypography.display(36, style: FontStyle.normal)),
+                Text(trainer.role, style: AppTypography.body(color: AppColors.redBright)),
+                const SizedBox(height: 12),
+                Text(trainer.bio, style: AppTypography.body(color: AppColors.textPrimary)),
+                const SizedBox(height: 16),
+                HetmanButton(label: 'ZAMKNIJ', onPressed: () => Navigator.pop(context)),
+              ],
+            ),
           ),
         ),
       ),

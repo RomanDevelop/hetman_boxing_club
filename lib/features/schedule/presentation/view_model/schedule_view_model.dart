@@ -3,7 +3,7 @@ import 'package:hetman_boxing_club/app/di/providers.dart';
 import 'package:hetman_boxing_club/features/club/domain/club_domain.dart';
 
 class ScheduleState {
-  const ScheduleState({required this.sessions, this.selectedDay = 1});
+  const ScheduleState({required this.sessions, this.selectedDay = 0});
 
   final List<ScheduleSession> sessions;
   final int selectedDay;

@@ -101,6 +101,8 @@ class TrainingOffer {
   final String imageUrl;
 }
 
+enum SessionAccent { green, blue, violet, gold }
+
 class ScheduleSession {
   const ScheduleSession({
     required this.id,
@@ -110,6 +112,7 @@ class ScheduleSession {
     required this.enrolled,
     required this.capacity,
     required this.weekdays,
+    required this.accent,
   });
 
   final String id;
@@ -119,6 +122,7 @@ class ScheduleSession {
   final int enrolled;
   final int capacity;
   final List<int> weekdays;
+  final SessionAccent accent;
 
   double get fill => capacity == 0 ? 0 : enrolled / capacity;
 }

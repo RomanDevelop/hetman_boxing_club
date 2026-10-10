@@ -5,11 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:hetman_boxing_club/app/router/app_routes.dart';
 import 'package:hetman_boxing_club/app/theme/app_colors.dart';
 import 'package:hetman_boxing_club/app/theme/app_typography.dart';
-import 'package:hetman_boxing_club/core/constants/club_photos.dart';
 import 'package:hetman_boxing_club/core/layout/breakpoints.dart';
-import 'package:hetman_boxing_club/core/widgets/club_photo.dart';
 import 'package:hetman_boxing_club/core/widgets/hetman_button.dart';
 import 'package:hetman_boxing_club/features/home/presentation/view_model/home_view_model.dart';
+import 'package:hetman_boxing_club/features/home/presentation/widgets/hero_slideshow.dart';
 import 'package:hetman_boxing_club/features/home/presentation/widgets/video_dialog.dart';
 
 class HeroSection extends ConsumerWidget {
@@ -82,7 +81,7 @@ class HeroSection extends ConsumerWidget {
       return Stack(
         fit: StackFit.expand,
         children: [
-          const ClubPhoto(url: ClubPhotos.boxer),
+          const HeroSlideshow(alignment: Alignment(0, -0.08)),
           const DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -120,7 +119,7 @@ class HeroSection extends ConsumerWidget {
           const Row(
             children: [
               Spacer(flex: 4),
-              Expanded(flex: 6, child: ClubPhoto(url: ClubPhotos.crowd)),
+              Expanded(flex: 6, child: HeroSlideshow()),
             ],
           ),
           const DecoratedBox(

@@ -92,19 +92,43 @@ class _Split extends StatelessWidget {
 }
 
 class MobileHome extends StatelessWidget {
-  const MobileHome({super.key});
+  const MobileHome({required this.viewportHeight, super.key});
+
+  final double viewportHeight;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final available = constraints.maxHeight.isFinite ? constraints.maxHeight : 680.0;
-        final height = available < 640 ? 680.0 : available;
-        if (available < 640) {
-          return SingleChildScrollView(child: SizedBox(height: height, child: const HeroSection()));
-        }
-        return const HeroSection();
-      },
+    final heroHeight = viewportHeight.isFinite && viewportHeight > 0 ? viewportHeight : 680.0;
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: SizedBox(height: heroHeight, child: const HeroSection()),
+        ),
+        const SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(16, 8, 16, 36),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                FeaturesStrip(),
+                SizedBox(height: 40),
+                GroupsSection(),
+                SizedBox(height: 40),
+                TrainingSection(showDiscipline: false),
+                SizedBox(height: 40),
+                ScheduleSection(),
+                SizedBox(height: 40),
+                TrainersSection(),
+                SizedBox(height: 40),
+                GallerySection(preview: true),
+                SizedBox(height: 40),
+                AchievementsSection(),
+              ],
+            ),
+          ),
+        ),
+        const SliverToBoxAdapter(child: SiteFooter()),
+      ],
     );
   }
 }
@@ -119,7 +143,7 @@ class HomePage extends StatelessWidget {
         if (Breakpoints.isDesktop(constraints.maxWidth)) {
           return const DesktopLanding();
         }
-        return const MobileHome();
+        return MobileHome(viewportHeight: constraints.maxHeight);
       },
     );
   }

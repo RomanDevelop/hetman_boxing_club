@@ -111,6 +111,7 @@ abstract final class ClubCatalog {
       enrolled: 12,
       capacity: 16,
       weekdays: weekdays,
+      accent: SessionAccent.green,
     ),
     ScheduleSession(
       id: 's-mlodziez',
@@ -120,6 +121,7 @@ abstract final class ClubCatalog {
       enrolled: 8,
       capacity: 14,
       weekdays: weekdays,
+      accent: SessionAccent.blue,
     ),
     ScheduleSession(
       id: 's-dorosli',
@@ -129,6 +131,7 @@ abstract final class ClubCatalog {
       enrolled: 10,
       capacity: 14,
       weekdays: weekdays,
+      accent: SessionAccent.violet,
     ),
     ScheduleSession(
       id: 's-grupa30',
@@ -138,36 +141,28 @@ abstract final class ClubCatalog {
       enrolled: 6,
       capacity: 12,
       weekdays: weekdays,
+      accent: SessionAccent.gold,
     ),
   ];
 
   static const trainers = [
     Trainer(
-      id: 'dmitriy',
-      name: 'Dmitriy S.',
-      role: 'Trener główny',
-      summary: 'Wieloletnie doświadczenie w szkoleniu dzieci i młodzieży.',
+      id: 'trener-1',
+      name: 'Trener',
+      role: 'Praca z młodzieżą',
+      summary: 'Doświadczenie w pracy z młodzieżą, rozwój zawodników, technika i motywacja.',
       bio:
-          'Prowadzi grupy młodzieżowe i odpowiada za plan startów. Stawia na technikę, spokój w ringu i rozwój charakteru, nie tylko na wynik.',
-      imageUrl: ClubPhotos.portrait,
+          'Doświadczenie w pracy z młodzieżą. Rozwój zawodników. Technika i motywacja. Zaangażowanie na każdym etapie.',
+      imageUrl: 'assets/images/trainer_1.jpg',
     ),
     Trainer(
-      id: 'anna',
-      name: 'Anna K.',
-      role: 'Trenerka',
-      summary: 'Treningi techniczne, kondycyjne, sparringi.',
+      id: 'trener-2',
+      name: 'Trener',
+      role: 'Zaangażowanie na każdym etapie',
+      summary: 'Technika, motywacja i wsparcie zawodnika od pierwszego treningu.',
       bio:
-          'Uczy pracy nóg, gardy i kontrolowanego sparringu. Prowadzi zajęcia dla dzieci oraz dorosłych, którzy wracają do formy.',
-      imageUrl: ClubPhotos.training,
-    ),
-    Trainer(
-      id: 'sergey',
-      name: 'Sergey L.',
-      role: 'Trener',
-      summary: 'Indywidualne podejście i rozwój zawodniczy.',
-      bio:
-          'Przygotowuje zawodników do turniejów regionalnych i układa plany pod konkretną osobę: od pierwszego treningu po walkę.',
-      imageUrl: ClubPhotos.boxer,
+          'Doświadczenie w pracy z młodzieżą. Rozwój zawodników. Technika i motywacja. Zaangażowanie na każdym etapie.',
+      imageUrl: 'assets/images/trainer_2.jpg',
     ),
   ];
 
