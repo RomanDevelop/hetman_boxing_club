@@ -151,7 +151,7 @@ class _EnrollmentPageState extends ConsumerState<EnrollmentPage> {
                   ],
                   const SizedBox(height: 18),
                   HetmanButton(
-                    label: 'WYŚLIJ ZGŁOSZENIE',
+                    label: 'WYŚLIJ PRZEZ WHATSAPP',
                     icon: Icons.arrow_forward,
                     onPressed: _submit,
                   ),
@@ -218,7 +218,7 @@ class _SuccessPanel extends StatelessWidget {
           Text('Dziękujemy, $name', style: AppTypography.display(36, style: FontStyle.normal)),
           const SizedBox(height: 8),
           Text(
-            'Zapis przyjęty. Trener skontaktuje się z Tobą i potwierdzi darmowy trening.',
+            'WhatsApp jest otwarty z gotową wiadomością. Wyślij ją, a trener potwierdzi darmowy trening.',
             style: AppTypography.body(size: 16, color: AppColors.textPrimary),
           ),
           const SizedBox(height: 18),

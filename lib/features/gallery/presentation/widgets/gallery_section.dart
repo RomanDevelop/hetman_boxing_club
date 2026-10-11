@@ -56,16 +56,22 @@ class GallerySection extends ConsumerWidget {
           ),
         LayoutBuilder(
           builder: (context, constraints) {
-            final columns = constraints.maxWidth >= 900 ? 3 : constraints.maxWidth >= 560 ? 2 : 1;
-            final width = (constraints.maxWidth - 12 * (columns - 1)) / columns;
+            final columns = preview
+                ? (constraints.maxWidth >= 1000 ? 4 : constraints.maxWidth >= 680 ? 2 : 1)
+                : (constraints.maxWidth >= 900 ? 3 : constraints.maxWidth >= 560 ? 2 : 1);
+            final gap = preview ? 16.0 : 12.0;
+            final width = (constraints.maxWidth - gap * (columns - 1)) / columns;
+            final imageAspect = preview && columns >= 4 ? width / (width * 10 / 16 + 143) : 16 / 10;
             return Wrap(
-              spacing: 12,
-              runSpacing: 12,
+              spacing: gap,
+              runSpacing: gap,
               children: [
                 for (var i = 0; i < items.length; i++)
                   SizedBox(
                     width: width,
-                    child: _GalleryTile(item: items[i]).animate(delay: (40 * i).ms).fadeIn(duration: 300.ms),
+                    child: _GalleryTile(item: items[i], imageAspect: imageAspect)
+                        .animate(delay: (40 * i).ms)
+                        .fadeIn(duration: 300.ms),
                   ),
               ],
             );
@@ -77,9 +83,10 @@ class GallerySection extends ConsumerWidget {
 }
 
 class _GalleryTile extends StatelessWidget {
-  const _GalleryTile({required this.item});
+  const _GalleryTile({required this.item, this.imageAspect = 16 / 10});
 
   final GalleryItem item;
+  final double imageAspect;
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +123,7 @@ class _GalleryTile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(aspectRatio: 16 / 10, child: ClubPhoto(url: item.imageUrl)),
+          AspectRatio(aspectRatio: imageAspect, child: ClubPhoto(url: item.imageUrl)),
           Padding(
             padding: const EdgeInsets.all(12),
             child: Column(

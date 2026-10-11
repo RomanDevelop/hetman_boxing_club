@@ -220,6 +220,7 @@ class ContactDetails {
     required this.phoneUri,
     required this.email,
     required this.mapQuery,
+    required this.whatsappNumber,
   });
 
   final String city;
@@ -228,6 +229,7 @@ class ContactDetails {
   final String phoneUri;
   final String email;
   final String mapQuery;
+  final String whatsappNumber;
 }
 
 abstract interface class HomeRepository {

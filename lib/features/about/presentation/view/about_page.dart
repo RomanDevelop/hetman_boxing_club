@@ -69,7 +69,7 @@ class AboutPage extends ConsumerWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: HetmanButton(
-            label: 'DOŁĄCZ DO KLUBU',
+            label: 'DOŁĄCZ PRZEZ WHATSAPP',
             icon: Icons.arrow_forward,
             onPressed: () => context.go(AppRoutes.enroll),
           ),

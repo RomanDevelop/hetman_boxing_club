@@ -56,7 +56,7 @@ class ContactPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 12),
                 HetmanButton(
-                  label: 'ZAPISZ SIĘ NA TRENING',
+                  label: 'ZAPISZ SIĘ PRZEZ WHATSAPP',
                   icon: Icons.arrow_forward,
                   onPressed: () => context.go(AppRoutes.enroll),
                 ),

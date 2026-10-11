@@ -39,15 +39,13 @@ class DesktopLanding extends StatelessWidget {
                     SizedBox(height: 56),
                     TrainingSection(showDiscipline: false),
                     SizedBox(height: 56),
-                    _Split(
-                      left: ScheduleSection(),
-                      right: TrainersSection(),
-                    ),
+                    ScheduleSection(),
                     SizedBox(height: 56),
-                    _Split(
-                      left: GallerySection(preview: true),
-                      right: AchievementsSection(),
-                    ),
+                    TrainersSection(),
+                    SizedBox(height: 56),
+                    GallerySection(preview: true),
+                    SizedBox(height: 56),
+                    AchievementsSection(),
                   ],
                 ),
               ),
@@ -56,39 +54,6 @@ class DesktopLanding extends StatelessWidget {
         ),
         SliverToBoxAdapter(child: SiteFooter()),
       ],
-    );
-  }
-}
-
-class _Split extends StatelessWidget {
-  const _Split({required this.left, required this.right});
-
-  final Widget left;
-  final Widget right;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth < Breakpoints.desktop) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              left,
-              const SizedBox(height: 36),
-              right,
-            ],
-          );
-        }
-        return Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(flex: 6, child: left),
-            const SizedBox(width: 28),
-            Expanded(flex: 5, child: right),
-          ],
-        );
-      },
     );
   }
 }

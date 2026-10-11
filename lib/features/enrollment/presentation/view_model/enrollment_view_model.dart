@@ -42,12 +42,12 @@ class EnrollmentViewModel extends Notifier<EnrollmentState> {
     state = state.copyWith(groupId: id, clearError: true);
   }
 
-  void submit({
+  Future<void> submit({
     required String name,
     required String phone,
     required String email,
     required String note,
-  }) {
+  }) async {
     final trimmedName = name.trim();
     final digits = phone.replaceAll(RegExp(r'\D'), '');
     final trimmedEmail = email.trim();
@@ -69,8 +69,32 @@ class EnrollmentViewModel extends Notifier<EnrollmentState> {
       state = state.copyWith(error: 'Wybierz grupę treningową.');
       return;
     }
-    if (note.trim().length > 400) {
+    final trimmedNote = note.trim();
+    if (trimmedNote.length > 400) {
       state = state.copyWith(error: 'Wiadomość może mieć najwyżej 400 znaków.');
+      return;
+    }
+
+    final group = ref.read(groupsRepositoryProvider).getGroups().where((item) => item.id == state.groupId).firstOrNull;
+    if (group == null) {
+      state = state.copyWith(error: 'Wybierz grupę treningową.');
+      return;
+    }
+
+    final club = ref.read(contactRepositoryProvider).getContact();
+    final message = [
+      'Nowe zgłoszenie na trening — Hetman Zamość',
+      'Imię i nazwisko: $trimmedName',
+      'Telefon: ${phone.trim()}',
+      'E-mail: $trimmedEmail',
+      'Grupa: ${group.title} · ${group.ageLabel}',
+      if (trimmedNote.isNotEmpty) 'Wiadomość: $trimmedNote',
+    ].join('\n');
+    final opened = await ref.read(externalLinksProvider).open(
+      Uri.https('wa.me', '/${club.whatsappNumber}', {'text': message}),
+    );
+    if (!opened) {
+      state = state.copyWith(error: 'Nie udało się otworzyć WhatsApp.');
       return;
     }
 

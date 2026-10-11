@@ -24,25 +24,28 @@ class TrainingSection extends ConsumerWidget {
       builder: (context, constraints) {
         final wide = constraints.maxWidth >= 980;
         final photo = _OfferPhoto(title: offer.title, body: offer.body, imageUrl: offer.imageUrl);
-        final benefits = _BenefitList(items: offer.benefits);
-        final quote = _QuoteCard(quote: offer.quote);
+        final benefits = _BenefitList(items: offer.benefits, fill: wide);
+        final quote = _QuoteCard(quote: offer.quote, fill: wide);
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (wide)
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(flex: 5, child: photo),
-                  const SizedBox(width: 18),
-                  Expanded(flex: 3, child: benefits),
-                  const SizedBox(width: 18),
-                  Expanded(flex: 4, child: quote),
-                ],
+              SizedBox(
+                height: 400,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(flex: 5, child: photo),
+                    const SizedBox(width: 18),
+                    Expanded(flex: 3, child: benefits),
+                    const SizedBox(width: 18),
+                    Expanded(flex: 4, child: quote),
+                  ],
+                ),
               )
             else ...[
-              photo,
+              SizedBox(height: 300, child: photo),
               const SizedBox(height: 16),
               benefits,
               const SizedBox(height: 16),
@@ -56,7 +59,7 @@ class TrainingSection extends ConsumerWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: HetmanButton(
-                label: 'ZAPISZ SIĘ TERAZ',
+                label: 'ZAPISZ SIĘ PRZEZ WHATSAPP',
                 icon: Icons.arrow_forward,
                 expanded: !wide,
                 onPressed: () => context.go(AppRoutes.enroll),
@@ -80,12 +83,15 @@ class _OfferPhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(18),
-      child: SizedBox(
-        height: 360,
+      child: SizedBox.expand(
         child: Stack(
           fit: StackFit.expand,
           children: [
-            ClubPhoto(url: imageUrl),
+            ClubPhoto(
+              asset: imageUrl.startsWith('assets/') ? imageUrl : null,
+              url: imageUrl.startsWith('assets/') ? null : imageUrl,
+              alignment: const Alignment(0, -0.12),
+            ),
             const DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -117,19 +123,21 @@ class _OfferPhoto extends StatelessWidget {
 }
 
 class _BenefitList extends StatelessWidget {
-  const _BenefitList({required this.items});
+  const _BenefitList({required this.items, required this.fill});
 
   final List<TrainingBenefit> items;
+  final bool fill;
 
   @override
   Widget build(BuildContext context) {
     return ClubCard(
-      padding: const EdgeInsets.all(18),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
       child: Column(
+        mainAxisAlignment: fill ? MainAxisAlignment.spaceEvenly : MainAxisAlignment.start,
         children: [
           for (final item in items)
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: EdgeInsets.symmetric(vertical: fill ? 0 : 8),
               child: Row(
                 children: [
                   const Icon(Icons.check_circle, color: AppColors.red, size: 18),
@@ -150,23 +158,25 @@ class _BenefitList extends StatelessWidget {
 }
 
 class _QuoteCard extends StatelessWidget {
-  const _QuoteCard({required this.quote});
+  const _QuoteCard({required this.quote, required this.fill});
 
   final String quote;
+  final bool fill;
 
   @override
   Widget build(BuildContext context) {
     return ClubCard(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('“', style: AppTypography.display(64, color: AppColors.red)),
+          Text('“', style: AppTypography.display(42, color: AppColors.red)),
+          const SizedBox(height: 4),
           Text(quote, style: AppTypography.body(size: 18, color: AppColors.textPrimary, height: 1.4)),
-          const SizedBox(height: 18),
+          if (fill) const Spacer() else const SizedBox(height: 16),
           const Align(
             alignment: Alignment.centerRight,
-            child: ClubEmblem(size: 56),
+            child: ClubEmblem(size: 48),
           ),
         ],
       ),

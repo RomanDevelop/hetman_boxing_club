@@ -139,7 +139,7 @@ class _DesktopBar extends StatelessWidget {
                 const Spacer(),
               const SizedBox(width: 8),
               HetmanButton(
-                label: 'ZAPISZ SIĘ',
+                label: 'WHATSAPP',
                 icon: Icons.arrow_forward,
                 onPressed: () => context.go(AppRoutes.enroll),
               ),
@@ -313,7 +313,7 @@ class _ClubMenu extends StatelessWidget {
               ),
             ),
             HetmanButton(
-              label: 'ZAPISZ SIĘ NA DARMOWY TRENING',
+              label: 'ZAPISZ SIĘ PRZEZ WHATSAPP',
               icon: Icons.arrow_forward,
               expanded: true,
               onPressed: () {

@@ -16,7 +16,6 @@ const _days = [
   (2, 'Śr'),
   (3, 'Czw'),
   (4, 'Pt'),
-  (5, 'Sob'),
 ];
 
 class ScheduleSection extends ConsumerWidget {
@@ -34,20 +33,26 @@ class ScheduleSection extends ConsumerWidget {
       children: [
         const SectionHeader(title: 'GRAFIK TRENINGÓW'),
         const SizedBox(height: 16),
-        Row(
-          children: [
-            for (final day in _days)
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 3),
-                  child: _DayChip(
-                    label: day.$2,
-                    selected: state.selectedDay == day.$1,
-                    onTap: () => notifier.selectDay(day.$1),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 680),
+            child: Row(
+              children: [
+                for (final day in _days)
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 3),
+                      child: _DayChip(
+                        label: day.$2,
+                        selected: state.selectedDay == day.$1,
+                        onTap: () => notifier.selectDay(day.$1),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-          ],
+              ],
+            ),
+          ),
         ),
         const SizedBox(height: 12),
         AnimatedSwitcher(
@@ -161,7 +166,7 @@ class _SessionCard extends StatelessWidget {
             );
             final name = Text(
               session.groupName,
-              maxLines: 1,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.manrope(
                 fontSize: wide ? 15 : 13,
@@ -281,7 +286,7 @@ class _EnrollPill extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
           child: Text(
-            'Zapisz się',
+            'WhatsApp',
             style: GoogleFonts.manrope(
               fontSize: 13,
               fontWeight: FontWeight.w700,

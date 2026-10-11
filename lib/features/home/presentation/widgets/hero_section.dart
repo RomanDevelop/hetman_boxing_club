@@ -45,7 +45,7 @@ class HeroSection extends ConsumerWidget {
           Row(
             children: [
               HetmanButton(
-                label: 'ZAPISZ SIĘ NA DARMOWY TRENING',
+                label: 'ZAPISZ SIĘ PRZEZ WHATSAPP',
                 icon: Icons.arrow_forward,
                 onPressed: () => context.go(AppRoutes.enroll),
               ),
@@ -60,7 +60,7 @@ class HeroSection extends ConsumerWidget {
           )
         else ...[
           HetmanButton(
-            label: 'ZAPISZ SIĘ NA DARMOWY TRENING',
+            label: 'ZAPISZ SIĘ PRZEZ WHATSAPP',
             icon: Icons.arrow_forward,
             expanded: true,
             onPressed: () => context.go(AppRoutes.enroll),

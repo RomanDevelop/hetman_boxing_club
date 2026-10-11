@@ -19,7 +19,12 @@ class SectionHeader extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final stacked = constraints.maxWidth < 900;
-        final titleWidget = Text(title, style: AppTypography.display(stacked ? 34 : 44));
+        final titleWidget = Text(
+          title,
+          maxLines: stacked ? 3 : 2,
+          overflow: TextOverflow.ellipsis,
+          style: AppTypography.display(stacked ? 34 : 44),
+        );
         final action = actionLabel == null
             ? null
             : HetmanButton(

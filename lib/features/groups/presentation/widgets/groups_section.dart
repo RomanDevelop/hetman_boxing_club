@@ -23,7 +23,7 @@ class GroupsSection extends ConsumerWidget {
       children: [
         SectionHeader(
           title: 'NASZE GRUPY TRENINGOWE',
-          actionLabel: 'ZAPISZ SIĘ NA DARMOWY TRENING',
+          actionLabel: 'ZAPISZ SIĘ PRZEZ WHATSAPP',
           onAction: () => context.go(AppRoutes.enroll),
         ),
         const SizedBox(height: 22),

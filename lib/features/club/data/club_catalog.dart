@@ -90,7 +90,7 @@ abstract final class ClubCatalog {
     quote:
         'Nie da się pokonać człowieka, który mimo porażek wciąż wstaje i idzie dalej…',
     discipline: 'DISCIPLINE\nBUILDS\nFREEDOM',
-    imageUrl: ClubPhotos.boxer,
+    imageUrl: 'assets/images/free_training.jpg',
     benefits: [
       TrainingBenefit(title: 'Profesjonalni trenerzy', iconKey: 'coach'),
       TrainingBenefit(title: 'Nowoczesna sala i sprzęt', iconKey: 'shield'),
@@ -100,48 +100,56 @@ abstract final class ClubCatalog {
     ],
   );
 
-  static const weekdays = [0, 1, 2, 3, 4, 5];
-
   static const schedule = [
     ScheduleSession(
-      id: 's-dzieci',
+      id: 's-kids',
       timeRange: '17:00 – 18:00',
-      groupName: 'Dzieci (5–9 lat)',
+      groupName: 'Boxing Kids',
       groupId: 'dzieci',
       enrolled: 12,
       capacity: 16,
-      weekdays: weekdays,
+      weekdays: [0, 2],
       accent: SessionAccent.green,
     ),
     ScheduleSession(
-      id: 's-mlodziez',
+      id: 's-poczatkujaca',
       timeRange: '18:00 – 19:30',
-      groupName: 'Młodzież (10–16 lat)',
+      groupName: 'Grupa początkująca',
       groupId: 'mlodziez',
       enrolled: 8,
       capacity: 14,
-      weekdays: weekdays,
+      weekdays: [0, 2],
       accent: SessionAccent.blue,
     ),
     ScheduleSession(
-      id: 's-dorosli',
-      timeRange: '19:30 – 21:00',
-      groupName: 'Dorośli 16+',
+      id: 's-zaawansowana',
+      timeRange: '18:00 – 19:30',
+      groupName: 'Grupa zaawansowana',
       groupId: 'dorosli',
       enrolled: 10,
       capacity: 14,
-      weekdays: weekdays,
+      weekdays: [1, 3],
       accent: SessionAccent.violet,
     ),
     ScheduleSession(
-      id: 's-grupa30',
+      id: 's-dorosli-30',
       timeRange: '19:30 – 21:00',
-      groupName: 'Grupa 30+ (dorośli)',
+      groupName: 'Dorośli 30+',
       groupId: 'grupa30',
       enrolled: 6,
       capacity: 12,
-      weekdays: weekdays,
+      weekdays: [1, 3],
       accent: SessionAccent.gold,
+    ),
+    ScheduleSession(
+      id: 's-piatek',
+      timeRange: '17:00 – 18:30',
+      groupName: 'Grupa początkująca + zaawansowana',
+      groupId: 'wspolny',
+      enrolled: 8,
+      capacity: 14,
+      weekdays: [4],
+      accent: SessionAccent.blue,
     ),
   ];
 
@@ -296,5 +304,6 @@ abstract final class ClubCatalog {
     phoneUri: '+48500123456',
     email: 'hetman@zamosc.pl',
     mapQuery: 'Zamość, ul. Partyzantów 14',
+    whatsappNumber: '48886979677',
   );
 }
