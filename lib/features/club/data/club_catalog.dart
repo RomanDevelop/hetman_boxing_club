@@ -37,7 +37,7 @@ abstract final class ClubCatalog {
       title: 'DZIECI',
       ageLabel: '5 – 9 LAT',
       summary: 'Pierwsze kroki przez ruch, zabawę i proste zasady sali.',
-      imageUrl: ClubPhotos.training,
+      imageUrl: 'assets/images/group_dzieci.jpg',
       tags: [
         GroupTag(label: 'Ruch', iconKey: 'run'),
         GroupTag(label: 'Zabawa', iconKey: 'play'),
@@ -49,7 +49,7 @@ abstract final class ClubCatalog {
       title: 'MŁODZIEŻ',
       ageLabel: '10 – 16 LAT',
       summary: 'Technika, sparringi kontrolowane i starty w zawodach.',
-      imageUrl: ClubPhotos.match,
+      imageUrl: 'assets/images/group_mlodziez.jpg',
       tags: [
         GroupTag(label: 'Technika', iconKey: 'technique'),
         GroupTag(label: 'Charakter', iconKey: 'character'),
@@ -61,7 +61,7 @@ abstract final class ClubCatalog {
       title: 'DOROŚLI',
       ageLabel: '16+',
       summary: 'Kondycja, samoobrona i sport dla osób po 16. roku życia.',
-      imageUrl: ClubPhotos.boxer,
+      imageUrl: 'assets/images/group_dorosli.jpg',
       tags: [
         GroupTag(label: 'Kondycja', iconKey: 'fitness'),
         GroupTag(label: 'Samoobrona', iconKey: 'defense'),
@@ -73,7 +73,7 @@ abstract final class ClubCatalog {
       title: 'GRUPA 30+',
       ageLabel: 'DLA DOROSŁYCH',
       summary: 'Forma, zdrowie i pewność siebie we własnym tempie.',
-      imageUrl: ClubPhotos.gym,
+      imageUrl: 'assets/images/group_30.jpg',
       tags: [
         GroupTag(label: 'Forma', iconKey: 'form'),
         GroupTag(label: 'Zdrowie', iconKey: 'health'),
@@ -162,7 +162,7 @@ abstract final class ClubCatalog {
       summary: 'Technika, motywacja i wsparcie zawodnika od pierwszego treningu.',
       bio:
           'Doświadczenie w pracy z młodzieżą. Rozwój zawodników. Technika i motywacja. Zaangażowanie na każdym etapie.',
-      imageUrl: 'assets/images/trainer_2.jpg',
+      imageUrl: 'assets/images/trainer_coach.jpg',
     ),
   ];
 

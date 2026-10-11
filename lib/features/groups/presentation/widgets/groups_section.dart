@@ -70,7 +70,11 @@ class _GroupCard extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                ClubPhoto(url: group.imageUrl),
+                ClubPhoto(
+                  asset: group.imageUrl.startsWith('assets/') ? group.imageUrl : null,
+                  url: group.imageUrl.startsWith('assets/') ? null : group.imageUrl,
+                  alignment: const Alignment(0, -0.08),
+                ),
                 const DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(

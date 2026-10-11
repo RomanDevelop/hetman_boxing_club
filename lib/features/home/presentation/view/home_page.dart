@@ -10,6 +10,7 @@ import 'package:hetman_boxing_club/features/gallery/presentation/widgets/gallery
 import 'package:hetman_boxing_club/features/groups/presentation/widgets/groups_section.dart';
 import 'package:hetman_boxing_club/features/home/presentation/widgets/features_strip.dart';
 import 'package:hetman_boxing_club/features/home/presentation/widgets/hero_section.dart';
+import 'package:hetman_boxing_club/features/home/presentation/widgets/team_banner.dart';
 import 'package:hetman_boxing_club/features/schedule/presentation/widgets/schedule_section.dart';
 import 'package:hetman_boxing_club/features/trainers/presentation/widgets/trainers_section.dart';
 import 'package:hetman_boxing_club/features/training/presentation/widgets/training_section.dart';
@@ -21,6 +22,7 @@ class DesktopLanding extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
+        const SliverToBoxAdapter(child: TeamBanner()),
         SliverToBoxAdapter(child: HeroSection()),
         SliverToBoxAdapter(
           child: Padding(
@@ -101,6 +103,7 @@ class MobileHome extends StatelessWidget {
     final heroHeight = viewportHeight.isFinite && viewportHeight > 0 ? viewportHeight : 680.0;
     return CustomScrollView(
       slivers: [
+        const SliverToBoxAdapter(child: TeamBanner()),
         SliverToBoxAdapter(
           child: SizedBox(height: heroHeight, child: const HeroSection()),
         ),

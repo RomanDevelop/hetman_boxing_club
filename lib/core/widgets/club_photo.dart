@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hetman_boxing_club/app/theme/app_colors.dart';
+import 'package:hetman_boxing_club/core/widgets/hetman_logo.dart';
 
 class ClubPhoto extends StatelessWidget {
   const ClubPhoto({
@@ -55,7 +55,7 @@ class ClubPhotoFallback extends StatelessWidget {
         ),
       ),
       child: Center(
-        child: Icon(Icons.sports_mma, color: AppColors.red, size: 56),
+        child: ClubEmblem(size: 72),
       ),
     );
   }

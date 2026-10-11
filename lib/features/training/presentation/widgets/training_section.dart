@@ -7,6 +7,7 @@ import 'package:hetman_boxing_club/app/theme/app_colors.dart';
 import 'package:hetman_boxing_club/app/theme/app_typography.dart';
 import 'package:hetman_boxing_club/core/widgets/club_card.dart';
 import 'package:hetman_boxing_club/core/widgets/club_photo.dart';
+import 'package:hetman_boxing_club/core/widgets/hetman_logo.dart';
 import 'package:hetman_boxing_club/core/widgets/hetman_button.dart';
 import 'package:hetman_boxing_club/features/club/domain/club_domain.dart';
 import 'package:hetman_boxing_club/features/training/presentation/view_model/training_view_model.dart';
@@ -165,7 +166,7 @@ class _QuoteCard extends StatelessWidget {
           const SizedBox(height: 18),
           const Align(
             alignment: Alignment.centerRight,
-            child: Icon(Icons.sports_mma, color: AppColors.red, size: 42),
+            child: ClubEmblem(size: 56),
           ),
         ],
       ),
