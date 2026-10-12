@@ -87,7 +87,7 @@ class EnrollmentViewModel extends Notifier<EnrollmentState> {
       'Imię i nazwisko: $trimmedName',
       'Telefon: ${phone.trim()}',
       'E-mail: $trimmedEmail',
-      'Grupa: ${group.title} · ${group.ageLabel}',
+      'Grupa: ${group.choiceLabel}',
       if (trimmedNote.isNotEmpty) 'Wiadomość: $trimmedNote',
     ].join('\n');
     final opened = await ref.read(externalLinksProvider).open(

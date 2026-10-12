@@ -35,14 +35,18 @@ class SiteFooter extends ConsumerWidget {
         ),
       ],
     );
-    const socials = Row(
+    final socials = Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _SocialButton(icon: Icons.facebook),
-        SizedBox(width: 8),
-        _SocialButton(icon: Icons.camera_alt_outlined),
-        SizedBox(width: 8),
-        _SocialButton(icon: Icons.play_circle_outline),
+        _SocialButton(
+          icon: Icons.facebook,
+          tooltip: 'Facebook',
+          onPressed: () => openClubLink(ref, context, Uri.parse(contact.facebookUrl)),
+        ),
+        const SizedBox(width: 8),
+        const _SocialButton(icon: Icons.camera_alt_outlined),
+        const SizedBox(width: 8),
+        const _SocialButton(icon: Icons.play_circle_outline),
       ],
     );
 
@@ -76,7 +80,7 @@ class SiteFooter extends ConsumerWidget {
                     const SizedBox(height: 16),
                     details,
                     const SizedBox(height: 14),
-                    const Align(alignment: Alignment.centerLeft, child: socials),
+                    Align(alignment: Alignment.centerLeft, child: socials),
                     const SizedBox(height: 18),
                     button,
                   ],
@@ -130,18 +134,22 @@ class _FooterLink extends StatelessWidget {
 }
 
 class _SocialButton extends StatelessWidget {
-  const _SocialButton({required this.icon});
+  const _SocialButton({required this.icon, this.onPressed, this.tooltip});
 
   final IconData icon;
+  final VoidCallback? onPressed;
+  final String? tooltip;
 
   @override
   Widget build(BuildContext context) {
     return IconButton.outlined(
-      onPressed: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Profil społecznościowy pojawi się wkrótce.')),
-        );
-      },
+      tooltip: tooltip,
+      onPressed: onPressed ??
+          () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Profil społecznościowy pojawi się wkrótce.')),
+            );
+          },
       icon: Icon(icon, size: 18),
     );
   }

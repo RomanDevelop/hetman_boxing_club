@@ -72,6 +72,8 @@ class TrainingGroup {
   final String summary;
   final String imageUrl;
   final List<GroupTag> tags;
+
+  String get choiceLabel => ageLabel.isEmpty ? title : '$title · $ageLabel';
 }
 
 class TrainingBenefit {
@@ -200,16 +202,36 @@ class Athlete {
   final int medals;
 }
 
+class AboutBlock {
+  const AboutBlock({
+    required this.heading,
+    this.paragraphs = const [],
+    this.points = const [],
+  });
+
+  final String heading;
+  final List<String> paragraphs;
+  final List<String> points;
+}
+
 class AboutContent {
   const AboutContent({
     required this.title,
-    required this.body,
-    required this.values,
+    required this.headline,
+    required this.intro,
+    required this.blocks,
+    required this.closing,
+    required this.slogan,
+    required this.imageAsset,
   });
 
   final String title;
-  final String body;
-  final List<String> values;
+  final String headline;
+  final List<String> intro;
+  final List<AboutBlock> blocks;
+  final List<String> closing;
+  final String slogan;
+  final String imageAsset;
 }
 
 class ContactDetails {
@@ -221,6 +243,7 @@ class ContactDetails {
     required this.email,
     required this.mapQuery,
     required this.whatsappNumber,
+    required this.facebookUrl,
   });
 
   final String city;
@@ -230,6 +253,7 @@ class ContactDetails {
   final String email;
   final String mapQuery;
   final String whatsappNumber;
+  final String facebookUrl;
 }
 
 abstract interface class HomeRepository {

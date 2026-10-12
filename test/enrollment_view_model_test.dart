@@ -53,8 +53,8 @@ void main() {
     expect(state.groupId, 'dzieci');
     expect(state.name, 'Anna Kowalska');
     expect(links.last?.host, 'wa.me');
-    expect(links.last?.path, '/48886979677');
+    expect(links.last?.path, '/48500557114');
     expect(links.last?.queryParameters['text'], contains('Anna Kowalska'));
-    expect(links.last?.queryParameters['text'], contains('DZIECI'));
+    expect(links.last?.queryParameters['text'], contains('BOXING KIDS'));
   });
 }

@@ -132,7 +132,7 @@ class _EnrollmentPageState extends ConsumerState<EnrollmentPage> {
                     children: [
                       for (final group in groups)
                         ChoiceChip(
-                          label: Text('${group.title} · ${group.ageLabel}'),
+                          label: Text(group.choiceLabel),
                           selected: state.groupId == group.id,
                           selectedColor: AppColors.red,
                           backgroundColor: AppColors.surface,
@@ -170,8 +170,10 @@ class _EnrollmentPageState extends ConsumerState<EnrollmentPage> {
                       style: AppTypography.display(32, style: FontStyle.normal),
                     ),
                     if (selected != null) ...[
-                      const SizedBox(height: 6),
-                      Text(selected.ageLabel, style: AppTypography.body()),
+                      if (selected.ageLabel.isNotEmpty) ...[
+                        const SizedBox(height: 6),
+                        Text(selected.ageLabel, style: AppTypography.body()),
+                      ],
                       const SizedBox(height: 8),
                       Text(selected.summary, style: AppTypography.body(size: 14, color: AppColors.textPrimary)),
                     ],

@@ -69,10 +69,10 @@ class _TrainerCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AspectRatio(
-            aspectRatio: 3 / 4,
+            aspectRatio: 2 / 3,
             child: ClubPhoto(
               asset: trainer.imageUrl,
-              alignment: Alignment.topCenter,
+              alignment: Alignment.center,
             ),
           ),
           Padding(
@@ -114,10 +114,10 @@ class _TrainerDialog extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
                   child: AspectRatio(
-                    aspectRatio: 3 / 4,
+                    aspectRatio: 2 / 3,
                     child: ClubPhoto(
                       asset: trainer.imageUrl,
-                      alignment: Alignment.topCenter,
+                      alignment: Alignment.center,
                     ),
                   ),
                 ),

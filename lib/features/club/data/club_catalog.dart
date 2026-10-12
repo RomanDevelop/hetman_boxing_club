@@ -34,9 +34,9 @@ abstract final class ClubCatalog {
   static const groups = [
     TrainingGroup(
       id: 'dzieci',
-      title: 'DZIECI',
-      ageLabel: '5 – 9 LAT',
-      summary: 'Pierwsze kroki przez ruch, zabawę i proste zasady sali.',
+      title: 'BOXING KIDS',
+      ageLabel: '',
+      summary: 'Rozwój koordynacji, sprawności i dyscypliny poprzez ruch i zabawę.',
       imageUrl: 'assets/images/group_dzieci.jpg',
       tags: [
         GroupTag(label: 'Ruch', iconKey: 'run'),
@@ -46,38 +46,38 @@ abstract final class ClubCatalog {
     ),
     TrainingGroup(
       id: 'mlodziez',
-      title: 'MŁODZIEŻ',
-      ageLabel: '10 – 16 LAT',
-      summary: 'Technika, sparringi kontrolowane i starty w zawodach.',
+      title: 'GRUPA POCZĄTKUJĄCA',
+      ageLabel: '',
+      summary: 'Nauka podstaw boksu, techniki, obrony i kondycji.',
       imageUrl: 'assets/images/group_mlodziez.jpg',
       tags: [
         GroupTag(label: 'Technika', iconKey: 'technique'),
-        GroupTag(label: 'Charakter', iconKey: 'character'),
-        GroupTag(label: 'Rozwój', iconKey: 'growth'),
+        GroupTag(label: 'Obrona', iconKey: 'defense'),
+        GroupTag(label: 'Kondycja', iconKey: 'fitness'),
       ],
     ),
     TrainingGroup(
       id: 'dorosli',
-      title: 'DOROŚLI',
-      ageLabel: '16+',
-      summary: 'Kondycja, samoobrona i sport dla osób po 16. roku życia.',
+      title: 'GRUPA ZAAWANSOWANA',
+      ageLabel: '',
+      summary: 'Doskonalenie umiejętności, przygotowanie techniczne i sportowe.',
       imageUrl: 'assets/images/group_dorosli.jpg',
       tags: [
-        GroupTag(label: 'Kondycja', iconKey: 'fitness'),
-        GroupTag(label: 'Samoobrona', iconKey: 'defense'),
+        GroupTag(label: 'Technika', iconKey: 'technique'),
         GroupTag(label: 'Sport', iconKey: 'sport'),
+        GroupTag(label: 'Rozwój', iconKey: 'growth'),
       ],
     ),
     TrainingGroup(
       id: 'grupa30',
-      title: 'GRUPA 30+',
-      ageLabel: 'DLA DOROSŁYCH',
-      summary: 'Forma, zdrowie i pewność siebie we własnym tempie.',
+      title: 'DOROŚLI 30+',
+      ageLabel: '',
+      summary: 'Poprawa kondycji, siły, zdrowia i pewności siebie.',
       imageUrl: 'assets/images/group_30.jpg',
       tags: [
-        GroupTag(label: 'Forma', iconKey: 'form'),
+        GroupTag(label: 'Kondycja', iconKey: 'fitness'),
+        GroupTag(label: 'Siła', iconKey: 'form'),
         GroupTag(label: 'Zdrowie', iconKey: 'health'),
-        GroupTag(label: 'Pewność siebie', iconKey: 'confidence'),
       ],
     ),
   ];
@@ -156,21 +156,20 @@ abstract final class ClubCatalog {
   static const trainers = [
     Trainer(
       id: 'trener-1',
-      name: 'Trener',
-      role: 'Praca z młodzieżą',
-      summary: 'Doświadczenie w pracy z młodzieżą, rozwój zawodników, technika i motywacja.',
+      name: 'Przemysław Maziarczuk',
+      role: 'Główny trener boksu',
+      summary: 'Założyciel klubu A.S.B. Hetman Zamość.',
       bio:
-          'Doświadczenie w pracy z młodzieżą. Rozwój zawodników. Technika i motywacja. Zaangażowanie na każdym etapie.',
-      imageUrl: 'assets/images/trainer_1.jpg',
+          'Główny trener boksu i założyciel klubu A.S.B. Hetman Zamość (Akademia Bokserskiego Sportu).',
+      imageUrl: 'assets/images/trainer_maziarczuk.jpg',
     ),
     Trainer(
       id: 'trener-2',
-      name: 'Trener',
-      role: 'Zaangażowanie na każdym etapie',
-      summary: 'Technika, motywacja i wsparcie zawodnika od pierwszego treningu.',
-      bio:
-          'Doświadczenie w pracy z młodzieżą. Rozwój zawodników. Technika i motywacja. Zaangażowanie na każdym etapie.',
-      imageUrl: 'assets/images/trainer_coach.jpg',
+      name: 'Alan Mazurek',
+      role: 'Trener',
+      summary: 'Doświadczony zawodnik olimpijskiego boksu i trener.',
+      bio: 'Doświadczony zawodnik olimpijskiego boksu i trener.',
+      imageUrl: 'assets/images/trainer_mazurek.jpg',
     ),
   ];
 
@@ -292,9 +291,61 @@ abstract final class ClubCatalog {
 
   static const about = AboutContent(
     title: 'O KLUBIE',
-    body:
-        'Tworzymy miejsce, w którym każdy – niezależnie od wieku – może rozwijać siłę, budować charakter i stawać się lepszą wersją siebie.',
-    values: ['PASJA', 'DYSCYPLINA', 'SUKCES', 'SZACUNEK'],
+    headline: 'Więcej niż sport. Tu rodzi się charakter!',
+    imageAsset: 'assets/images/about_team.jpg',
+    intro: [
+      'A.S.B.K.S. Hetman Zamość to klub bokserski, w którym pasja do sportu łączy się z ciężką pracą, dyscypliną i wzajemnym szacunkiem.',
+      'Prowadzimy treningi boksu olimpijskiego dla dzieci, młodzieży i dorosłych — zarówno dla osób stawiających pierwsze kroki, jak i zawodników rozwijających swoje umiejętności oraz przygotowujących się do rywalizacji sportowej.',
+      'Naszym celem jest nie tylko nauka techniki bokserskiej, ale przede wszystkim kształtowanie charakteru, pewności siebie, wytrwałości i ducha walki.',
+    ],
+    blocks: [
+      AboutBlock(
+        heading: 'NASZA MISJA',
+        paragraphs: [
+          'Wierzymy, że boks to coś więcej niż walka na ringu. To szkoła życia, która uczy odpowiedzialności, samodyscypliny, pokonywania własnych słabości i szacunku do innych.',
+          'W naszym klubie każdy może znaleźć swoje miejsce — niezależnie od wieku i poziomu zaawansowania.',
+        ],
+      ),
+      AboutBlock(
+        heading: 'NASZE TRENINGI',
+        points: [
+          'Boxing Kids — rozwój koordynacji, sprawności i dyscypliny poprzez ruch i zabawę.',
+          'Grupa początkująca — nauka podstaw boksu, techniki, obrony i kondycji.',
+          'Grupa zaawansowana — doskonalenie umiejętności, przygotowanie techniczne i sportowe.',
+          'Dorośli 30+ — poprawa kondycji, siły, zdrowia i pewności siebie.',
+        ],
+      ),
+      AboutBlock(
+        heading: 'NASI TRENERZY',
+        points: [
+          'Przemysław Maziarczuk — główny trener boksu i założyciel klubu A.S.B. Hetman Zamość.',
+          'Alan Mazurek — doświadczony zawodnik boksu olimpijskiego i trener.',
+        ],
+        paragraphs: [
+          'Nasi trenerzy wspierają zawodników na każdym etapie rozwoju, dbając o technikę, bezpieczeństwo i motywację.',
+        ],
+      ),
+      AboutBlock(
+        heading: 'DLACZEGO WARTO TRENOWAĆ Z NAMI?',
+        points: [
+          'Doświadczeni i zaangażowani trenerzy.',
+          'Treningi dla dzieci, młodzieży i dorosłych.',
+          'Przyjazna atmosfera i wzajemny szacunek.',
+          'Rozwój siły, wytrzymałości i koordynacji.',
+          'Możliwość przygotowania do zawodów bokserskich.',
+          'Indywidualne podejście do każdego zawodnika.',
+        ],
+      ),
+      AboutBlock(
+        heading: 'DOŁĄCZ DO NASZEJ DRUŻYNY!',
+        paragraphs: [
+          'Nie musisz mieć doświadczenia, aby rozpocząć swoją przygodę z boksem. Wystarczą chęci, determinacja i gotowość do działania.',
+          'Przyjdź na bezpłatny trening i przekonaj się, co potrafisz!',
+        ],
+      ),
+    ],
+    closing: [],
+    slogan: 'A.S.B.K.S. HETMAN ZAMOŚĆ — TU RODZI SIĘ CHARAKTER!',
   );
 
   static const contact = ContactDetails(
@@ -304,6 +355,7 @@ abstract final class ClubCatalog {
     phoneUri: '+48500123456',
     email: 'hetman@zamosc.pl',
     mapQuery: 'Zamość, ul. Partyzantów 14',
-    whatsappNumber: '48886979677',
+    whatsappNumber: '48500557114',
+    facebookUrl: 'https://www.facebook.com/profile.php?id=100064851904742',
   );
 }

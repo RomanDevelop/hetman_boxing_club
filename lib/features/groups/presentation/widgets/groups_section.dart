@@ -92,8 +92,11 @@ class _GroupCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(group.title, style: AppTypography.display(28)),
-                Text(group.ageLabel, style: AppTypography.title(16, color: AppColors.textSecondary)),
+                Text(group.title, maxLines: 2, style: AppTypography.display(24)),
+                if (group.ageLabel.isNotEmpty) ...[
+                  const SizedBox(height: 4),
+                  Text(group.ageLabel, style: AppTypography.title(16, color: AppColors.textSecondary)),
+                ],
                 const SizedBox(height: 8),
                 Text(group.summary, style: AppTypography.body(size: 13)),
                 const SizedBox(height: 12),
