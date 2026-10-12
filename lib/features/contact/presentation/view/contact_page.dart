@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hetman_boxing_club/app/router/app_routes.dart';
@@ -9,7 +10,9 @@ import 'package:hetman_boxing_club/core/widgets/club_card.dart';
 import 'package:hetman_boxing_club/core/widgets/club_scroll_view.dart';
 import 'package:hetman_boxing_club/core/widgets/hetman_button.dart';
 import 'package:hetman_boxing_club/core/widgets/section_header.dart';
+import 'package:hetman_boxing_club/features/club/domain/club_domain.dart';
 import 'package:hetman_boxing_club/features/contact/presentation/view_model/contact_view_model.dart';
+import 'package:latlong2/latlong.dart';
 
 class ContactPage extends ConsumerWidget {
   const ContactPage({super.key});
@@ -27,32 +30,60 @@ class ContactPage extends ConsumerWidget {
             final details = Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(contact.city, style: AppTypography.display(36, style: FontStyle.normal)),
-                Text(contact.street, style: AppTypography.body(size: 16, color: AppColors.textPrimary)),
+                Text(
+                  contact.city,
+                  style: AppTypography.display(36, style: FontStyle.normal),
+                ),
+                Text(
+                  contact.venue,
+                  style: AppTypography.body(
+                    size: 16,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+                Text(
+                  contact.street,
+                  style: AppTypography.body(
+                    size: 16,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
                 const SizedBox(height: 16),
                 _ContactRow(
                   icon: Icons.phone_outlined,
                   label: contact.phoneDisplay,
-                  onTap: () => openClubLink(ref, context, Uri.parse('tel:${contact.phoneUri}')),
+                  onTap:
+                      () => openClubLink(
+                        ref,
+                        context,
+                        Uri.parse('tel:${contact.phoneUri}'),
+                      ),
                 ),
                 const SizedBox(height: 10),
                 _ContactRow(
                   icon: Icons.mail_outline,
                   label: contact.email,
-                  onTap: () => openClubLink(ref, context, Uri.parse('mailto:${contact.email}')),
+                  onTap:
+                      () => openClubLink(
+                        ref,
+                        context,
+                        Uri.parse('mailto:${contact.email}'),
+                      ),
                 ),
                 const SizedBox(height: 12),
                 HetmanButton(
                   label: 'OTWÓRZ W GOOGLE MAPS',
                   icon: Icons.map_outlined,
                   variant: HetmanButtonVariant.outline,
-                  onPressed: () => openClubLink(
-                    ref,
-                    context,
-                    Uri.parse(
-                      'https://www.google.com/maps/search/?api=1&query=${Uri.encodeComponent(contact.mapQuery)}',
-                    ),
-                  ),
+                  onPressed:
+                      () => openClubLink(
+                        ref,
+                        context,
+                        Uri.https('www.google.com', '/maps/search/', {
+                          'api': '1',
+                          'query': '${contact.latitude},${contact.longitude}',
+                        }),
+                      ),
                 ),
                 const SizedBox(height: 12),
                 HetmanButton(
@@ -63,19 +94,16 @@ class ContactPage extends ConsumerWidget {
               ],
             );
 
+            final map = _ClubMap(contact: contact, height: wide ? 460 : 320);
             if (!wide) {
               return Column(
-                children: [
-                  const _ClubMap(),
-                  const SizedBox(height: 16),
-                  details,
-                ],
+                children: [map, const SizedBox(height: 16), details],
               );
             }
             return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Expanded(child: _ClubMap()),
+                Expanded(child: map),
                 const SizedBox(width: 20),
                 Expanded(child: details),
               ],
@@ -88,7 +116,11 @@ class ContactPage extends ConsumerWidget {
 }
 
 class _ContactRow extends StatelessWidget {
-  const _ContactRow({required this.icon, required this.label, required this.onTap});
+  const _ContactRow({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
 
   final IconData icon;
   final String label;
@@ -103,7 +135,12 @@ class _ContactRow extends StatelessWidget {
         children: [
           Icon(icon, color: AppColors.redBright),
           const SizedBox(width: 10),
-          Expanded(child: Text(label, style: AppTypography.body(size: 16, color: AppColors.textPrimary))),
+          Expanded(
+            child: Text(
+              label,
+              style: AppTypography.body(size: 16, color: AppColors.textPrimary),
+            ),
+          ),
         ],
       ),
     );
@@ -111,54 +148,91 @@ class _ContactRow extends StatelessWidget {
 }
 
 class _ClubMap extends StatelessWidget {
-  const _ClubMap();
+  const _ClubMap({required this.contact, required this.height});
+
+  final ContactDetails contact;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
+    final point = LatLng(contact.latitude, contact.longitude);
     return ClipRRect(
       borderRadius: BorderRadius.circular(18),
       child: SizedBox(
-        height: 280,
-        child: CustomPaint(
-          painter: _MapPainter(),
-          child: const Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.location_on, color: AppColors.redBright, size: 42),
-                SizedBox(height: 6),
-                Text('HETMAN', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
-              ],
+        height: height,
+        child: FlutterMap(
+          options: MapOptions(
+            initialCenter: point,
+            initialZoom: 17,
+            minZoom: 14,
+            maxZoom: 19,
+            backgroundColor: const Color(0xFF14161C),
+            interactionOptions: const InteractionOptions(
+              flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
             ),
           ),
+          children: [
+            TileLayer(
+              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+              userAgentPackageName: 'pl.asbks.hetman.hetman_boxing_club',
+            ),
+            MarkerLayer(
+              markers: [
+                Marker(
+                  point: point,
+                  width: 44,
+                  height: 44,
+                  alignment: Alignment.topCenter,
+                  child: const Icon(
+                    Icons.location_on,
+                    color: AppColors.redBright,
+                    size: 44,
+                  ),
+                ),
+              ],
+            ),
+            const SimpleAttributionWidget(
+              alignment: Alignment.topRight,
+              source: Text('OpenStreetMap'),
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 280),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: const Color(0xF0070708),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('HETMAN', style: AppTypography.title(16)),
+                          Text(
+                            contact.mapQuery,
+                            style: AppTypography.body(
+                              size: 12,
+                              color: AppColors.textPrimary,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
-}
-
-class _MapPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final background = Paint()..color = const Color(0xFF14161C);
-    canvas.drawRect(Offset.zero & size, background);
-
-    final road = Paint()
-      ..color = const Color(0xFF2C3140)
-      ..strokeWidth = 10
-      ..style = PaintingStyle.stroke;
-    canvas.drawLine(Offset(0, size.height * 0.35), Offset(size.width, size.height * 0.48), road);
-    canvas.drawLine(Offset(size.width * 0.3, 0), Offset(size.width * 0.55, size.height), road);
-
-    final thin = Paint()
-      ..color = const Color(0xFF232838)
-      ..strokeWidth = 1;
-    for (var i = 0; i < 8; i++) {
-      final y = size.height / 8 * i;
-      canvas.drawLine(Offset(0, y), Offset(size.width, y), thin);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

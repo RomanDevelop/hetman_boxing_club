@@ -20,18 +20,32 @@ class SiteFooter extends ConsumerWidget {
       children: [
         Text(contact.city, style: AppTypography.title(18)),
         const SizedBox(height: 2),
+        Text(
+          contact.venue,
+          style: AppTypography.body(size: 14, color: AppColors.textPrimary),
+        ),
         Text(contact.street, style: AppTypography.body(size: 14)),
         const SizedBox(height: 8),
         _FooterLink(
           icon: Icons.phone_outlined,
           label: contact.phoneDisplay,
-          onTap: () => openClubLink(ref, context, Uri.parse('tel:${contact.phoneUri}')),
+          onTap:
+              () => openClubLink(
+                ref,
+                context,
+                Uri.parse('tel:${contact.phoneUri}'),
+              ),
         ),
         const SizedBox(height: 4),
         _FooterLink(
           icon: Icons.mail_outline,
           label: contact.email,
-          onTap: () => openClubLink(ref, context, Uri.parse('mailto:${contact.email}')),
+          onTap:
+              () => openClubLink(
+                ref,
+                context,
+                Uri.parse('mailto:${contact.email}'),
+              ),
         ),
       ],
     );
@@ -41,7 +55,8 @@ class SiteFooter extends ConsumerWidget {
         _SocialButton(
           icon: Icons.facebook,
           tooltip: 'Facebook',
-          onPressed: () => openClubLink(ref, context, Uri.parse(contact.facebookUrl)),
+          onPressed:
+              () => openClubLink(ref, context, Uri.parse(contact.facebookUrl)),
         ),
         const SizedBox(width: 8),
         const _SocialButton(icon: Icons.camera_alt_outlined),
@@ -108,7 +123,11 @@ class SiteFooter extends ConsumerWidget {
 }
 
 class _FooterLink extends StatelessWidget {
-  const _FooterLink({required this.icon, required this.label, required this.onTap});
+  const _FooterLink({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
 
   final IconData icon;
   final String label;
@@ -125,7 +144,10 @@ class _FooterLink extends StatelessWidget {
           children: [
             Icon(icon, size: 16, color: AppColors.redBright),
             const SizedBox(width: 8),
-            Text(label, style: AppTypography.body(size: 14, color: AppColors.textPrimary)),
+            Text(
+              label,
+              style: AppTypography.body(size: 14, color: AppColors.textPrimary),
+            ),
           ],
         ),
       ),
@@ -144,10 +166,13 @@ class _SocialButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton.outlined(
       tooltip: tooltip,
-      onPressed: onPressed ??
+      onPressed:
+          onPressed ??
           () {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Profil społecznościowy pojawi się wkrótce.')),
+              const SnackBar(
+                content: Text('Profil społecznościowy pojawi się wkrótce.'),
+              ),
             );
           },
       icon: Icon(icon, size: 18),

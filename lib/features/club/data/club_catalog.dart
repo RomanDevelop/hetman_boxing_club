@@ -36,7 +36,8 @@ abstract final class ClubCatalog {
       id: 'dzieci',
       title: 'BOXING KIDS',
       ageLabel: '',
-      summary: 'Rozwój koordynacji, sprawności i dyscypliny poprzez ruch i zabawę.',
+      summary:
+          'Rozwój koordynacji, sprawności i dyscypliny poprzez ruch i zabawę.',
       imageUrl: 'assets/images/group_dzieci.jpg',
       tags: [
         GroupTag(label: 'Ruch', iconKey: 'run'),
@@ -60,7 +61,8 @@ abstract final class ClubCatalog {
       id: 'dorosli',
       title: 'GRUPA ZAAWANSOWANA',
       ageLabel: '',
-      summary: 'Doskonalenie umiejętności, przygotowanie techniczne i sportowe.',
+      summary:
+          'Doskonalenie umiejętności, przygotowanie techniczne i sportowe.',
       imageUrl: 'assets/images/group_dorosli.jpg',
       tags: [
         GroupTag(label: 'Technika', iconKey: 'technique'),
@@ -178,7 +180,8 @@ abstract final class ClubCatalog {
       id: 'nikita',
       date: DateTime(2025, 3, 12),
       title: 'Sukces Nikity! Zawodnik miesiąca',
-      excerpt: 'Nikita K. wygrywa turniej młodzieżowy i zostaje zawodnikiem miesiąca.',
+      excerpt:
+          'Nikita K. wygrywa turniej młodzieżowy i zostaje zawodnikiem miesiąca.',
       body:
           'Na marcowym turnieju w regionie Nikita K. wygrał wszystkie trzy walki i zamknął zawody złotem w swojej kategorii.\n\nTrenerzy wyróżnili go nie tylko za wynik, ale za spokój między rundami i pracę na treningach przez całą zimę. W klubie zostaje zawodnikiem miesiąca.',
       imageUrl: ClubPhotos.match,
@@ -187,7 +190,8 @@ abstract final class ClubCatalog {
       id: 'nowa-grupa',
       date: DateTime(2025, 3, 12),
       title: 'Treningi bez granic. Nowa grupa startuje',
-      excerpt: 'Grupa 30+ rusza w nowym sezonie. Pierwszy trening jest bezpłatny.',
+      excerpt:
+          'Grupa 30+ rusza w nowym sezonie. Pierwszy trening jest bezpłatny.',
       body:
           'Od marca na sali działa osobna grupa dla dorosłych 30+. Tempo dobieramy do osób, które chcą wrócić do ruchu, zadbać o kondycję albo po prostu spróbować boksu.\n\nZapisy są otwarte. Pierwsze zajęcia nic nie kosztują — przychodzisz, patrzysz i decydujesz.',
       imageUrl: ClubPhotos.gym,
@@ -196,7 +200,8 @@ abstract final class ClubCatalog {
       id: 'oboz',
       date: DateTime(2025, 3, 2),
       title: 'Obóz zimowy za nami',
-      excerpt: 'Trzy dni techniki, sparringów i wspólnego stołu. Wracamy mocniejsi.',
+      excerpt:
+          'Trzy dni techniki, sparringów i wspólnego stołu. Wracamy mocniejsi.',
       body:
           'Zimowy obóz Hetmana zebrał młodzież i starszych zawodników. Rano technika, po południu kondycja, wieczorem omówienie walk.\n\nTo był czas, w którym widać klub najlepiej: starsi pomagają młodszym, a każdy wraca z konkretnym zadaniem na kolejne tygodnie.',
       imageUrl: ClubPhotos.crowd,
@@ -205,7 +210,8 @@ abstract final class ClubCatalog {
       id: 'zapisy',
       date: DateTime(2025, 2, 18),
       title: 'Zapisy na darmowy trening',
-      excerpt: 'Dzieci, młodzież i dorośli mogą przyjść na pierwsze zajęcia bez opłaty.',
+      excerpt:
+          'Dzieci, młodzież i dorośli mogą przyjść na pierwsze zajęcia bez opłaty.',
       body:
           'Jeśli wahasz się, czy boks jest dla Ciebie albo dla dziecka, przyjdź na jeden trening. Pokażemy salę, zasady i sposób pracy trenerów.\n\nWeź wygodny strój i wodę. Rękawice na pierwszy raz są na miejscu.',
       imageUrl: ClubPhotos.ring,
@@ -350,11 +356,14 @@ abstract final class ClubCatalog {
 
   static const contact = ContactDetails(
     city: 'Zamość',
-    street: 'ul. Partyzantów 14',
+    venue: 'Hala sportowa OSiR',
+    street: 'ul. Królowej Jadwigi 8',
     phoneDisplay: '+48 500 123 456',
     phoneUri: '+48500123456',
     email: 'hetman@zamosc.pl',
-    mapQuery: 'Zamość, ul. Partyzantów 14',
+    mapQuery: 'Hala sportowa OSiR, ul. Królowej Jadwigi 8, Zamość',
+    latitude: 50.7207145,
+    longitude: 23.2441635,
     whatsappNumber: '48500557114',
     facebookUrl: 'https://www.facebook.com/profile.php?id=100064851904742',
   );

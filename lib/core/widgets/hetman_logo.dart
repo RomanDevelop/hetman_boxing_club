@@ -3,23 +3,21 @@ import 'package:go_router/go_router.dart';
 import 'package:hetman_boxing_club/app/router/app_routes.dart';
 
 class ClubEmblem extends StatelessWidget {
-  const ClubEmblem({required this.size, this.radius, super.key});
+  const ClubEmblem({required this.size, super.key});
 
   final double size;
-  final double? radius;
 
-  static const asset = 'assets/images/logo.jpg';
+  static const asset = 'assets/images/logo_hetman.png';
+  static const aspectRatio = 819 / 545;
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(radius ?? size * 0.16),
-      child: Image.asset(
-        asset,
-        width: size,
-        height: size,
-        fit: BoxFit.cover,
-      ),
+    return Image.asset(
+      asset,
+      width: size * aspectRatio,
+      height: size,
+      fit: BoxFit.contain,
+      filterQuality: FilterQuality.high,
     );
   }
 }

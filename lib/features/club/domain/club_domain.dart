@@ -237,21 +237,27 @@ class AboutContent {
 class ContactDetails {
   const ContactDetails({
     required this.city,
+    required this.venue,
     required this.street,
     required this.phoneDisplay,
     required this.phoneUri,
     required this.email,
     required this.mapQuery,
+    required this.latitude,
+    required this.longitude,
     required this.whatsappNumber,
     required this.facebookUrl,
   });
 
   final String city;
+  final String venue;
   final String street;
   final String phoneDisplay;
   final String phoneUri;
   final String email;
   final String mapQuery;
+  final double latitude;
+  final double longitude;
   final String whatsappNumber;
   final String facebookUrl;
 }
